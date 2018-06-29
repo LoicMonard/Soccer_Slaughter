@@ -11,12 +11,17 @@ public class PlayerEngine : MonoBehaviour
     public KeyCode _inputLeft;
     public KeyCode _inputRight;
 
+    private float _exhaustingRate;
+
 	void Start () {
         gameObject.GetComponent<Renderer>().material.color = Color.green;
     }
 
     void Update()
     {
+        //////////////////////////////////////////////////////////////////
+
+        // I. Character movements + exhaustion handlings.
         if (Input.GetKey(_inputFront))
         {
             if (Input.GetKey(KeyCode.LeftShift))
@@ -33,5 +38,9 @@ public class PlayerEngine : MonoBehaviour
 
         if (Input.GetKey(_inputRight))
             transform.Rotate(0, _turnSpeed * Time.deltaTime, 0);
+
+        //////////////////////////////////////////////////////////////////
+
+        // II. [...]
     }
 }
