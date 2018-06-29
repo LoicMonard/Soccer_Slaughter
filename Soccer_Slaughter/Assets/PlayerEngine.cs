@@ -11,9 +11,10 @@ public class PlayerEngine : MonoBehaviour
     public KeyCode _inputLeft;
     public KeyCode _inputRight;
 
-    private float _exhaustingRate;
+    private float _powerRate;
 
 	void Start () {
+        _powerRate = 100;
         gameObject.GetComponent<Renderer>().material.color = Color.green;
     }
 
@@ -22,12 +23,28 @@ public class PlayerEngine : MonoBehaviour
         //////////////////////////////////////////////////////////////////
 
         // I. Character movements + exhaustion handlings.
+        if (!(Input.GetKey(KeyCode.LeftShift)) && _powerRate <= 100)
+        {
+            if (_powerRate == 0)
+                _powerRate++;
+
+            _powerRate = _powerRate * 1.007f;
+        }
+
+        if (Input.GetKey(_inputFront) && Input.GetKey(KeyCode.LeftShift) && _powerRate > 0)
+        {
+            transform.Translate(0, 0, _sprintSpeed * Time.deltaTime);
+            _powerRate = _powerRate * 0.0005f;
+        }
+
         if (Input.GetKey(_inputFront))
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-                transform.Translate(0, 0, _sprintSpeed * Time.deltaTime);
-            else
-                transform.Translate(0, 0, _trotSpeed * Time.deltaTime);
+            transform.Translate(0, 0, _trotSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetKey(_inputFront) && !(Input.GetKey(KeyCode.LeftShift)))
+        {
+            transform.Translate(0, 0, _trotSpeed * Time.deltaTime);
         }
 
         if (Input.GetKey(_inputBack))
