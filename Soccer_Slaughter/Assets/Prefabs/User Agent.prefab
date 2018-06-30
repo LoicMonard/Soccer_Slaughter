@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 54978110635151872}
   m_Layer: 0
   m_Name: User Agent
-  m_TagString: Untagged
+  m_TagString: user_agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
-  _speed: 1
+  smoothTime: 0.3
+  _speed: 3
 --- !u!136 &136702689985510756
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -60,4 +60,19 @@ public class PlayerEngine : MonoBehaviour
 
         // II. [...]
     }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "user_agent")
+        {
+            DrawBack(col);
+        }
+    }
+    
+    void DrawBack(Collision col)
+    {
+        //col.transform.Translate(Vector3.forward * -1 * Time.deltaTime * 50);
+        col.gameObject.GetComponent<Rigidbody>().AddForce(col.gameObject.GetComponent<Rigidbody>().position - transform.position * 3, ForceMode.VelocityChange);
+
+    }
 }
